@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Birthday Surprise 🎉</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* LOGIN */
+#loginBox {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+#loginBox input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+#loginBox button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #ff5e78;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* BIRTHDAY AREA */
+#birthdayBox {
+    display: none;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    animation: pop 1s infinite alternate;
+}
+
+@keyframes pop {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+}
+
+/* IMAGE GALLERY */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+.gallery img {
+    width: 100%;
+    width: 150px;
+    height: 250px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.4s;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+/* CLICK EFFECT */
+.gallery img.active {
+    transform: scale(1.2) rotate(2deg);
+    box-shadow: 0 0 30px #fff;
+}
+
+/* MESSAGE */
+#imgMessage {
+    margin-top: 15px;
+    font-size: 20px;
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginBox">
+    <h2>🎁 Birthday Surprise Login</h2>
+    <input type="text" id="username" placeholder="Enter birthday girl Name">
+    <input type="password" id="password" placeholder="Enter Password (your snapchat password)">
+    <button onclick="login()">Open Surprise 🎉</button>
+    <p id="error" style="color:red;"></p>
+</div>
+
+<!-- BIRTHDAY CONTENT -->
+<div id="birthdayBox">
+    <h1 id="title"></h1>
+
+    <div class="gallery">
+        <img src="image111.jpeg" onclick="tapImage(this)">
+        <img src="image15 (1).jpeg" onclick="tapImage(this)">
+        <img src="image14.jpeg" onclick="tapImage(this)">
+        <img src="img1.jpg" onclick="tapImage(this)">
+        <img src="img2.jpg" onclick="tapImage(this)">
+        <img src="img3.jpg" onclick="tapImage(this)">
+        <img src="img4.jpg" onclick="tapImage(this)">
+        <img src="img5.jpg" onclick="tapImage(this)">
+        <img src="img6.jpg" onclick="tapImage(this)">
+        <img src="img7.jpg" onclick="tapImage(this)">
+        <img src="img8.jpg" onclick="tapImage(this)">
+        <img src="img9.jpg" onclick="tapImage(this)">
+        <img src="img10.jpg" onclick="tapImage(this)">
+        <img src="img11.jpg" onclick="tapImage(this)">
+    </div>
+
+    <div id="imgMessage">🎉 You are special! 🎂💖</div>
+</div>
+
+<script>
+function login() {
+    let name = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+    let correctPassword = "15092005";
+
+    if (name === "" || pass === "") {
+        document.getElementById("error").innerText = "Please fill all fields";
+    }
+    else if (pass === correctPassword) {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("birthdayBox").style.display = "block";
+        document.getElementById("title").innerText =
+            "🎉 Happy Birthday " + name + " 🎂 \nHappy birthday my dear wife " ;
+    }
+    else {
+        document.getElementById("error").innerText = "Wrong Password ❌";
+    }
+}
+
+function tapImage(img) {
+    // Remove active from all
+    document.querySelectorAll(".gallery img").forEach(i => i.classList.remove("active"));
+
+    // Add effect
+    img.classList.add("active");
+
+    // Show message
+    let msg = document.getElementById("imgMessage");
+    msg.style.display = "block";
+    msg.innerText = "✨ This moment is just for you ✨";
+
+    // Auto remove effect
+    setTimeout(() => {
+        img.classList.remove("active");
+    }, 1200);
+}
+</script>
+
+</body>
+</html>
